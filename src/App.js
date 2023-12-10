@@ -4,9 +4,12 @@ import "./App.css";
 function App() {
   const [title, setTitle] = useState("");
   const [id, setId] = useState(0);
-  const [items, setItems] = useState(typeof(localStorage.getItem("items")) !== "undefined"?[]:JSON.parse(localStorage.getItem('items')));
+  const [items, setItems] = useState(
+    localStorage.getItem("items") == null
+      ? []
+      : JSON.parse(localStorage.getItem("items"))
+  );
   const ref = useRef(null);
-  console.log("Test");
   const submit = (e) => {
     e.preventDefault();
     if (id === 0) {
