@@ -71,15 +71,33 @@ function App() {
                       onChange={(e) => setTitleEdit(e.target.value)}
                     />
 
-                    <button type="submit">Save</button>
-                    <button onClick={() => setId(0)}>Cancel</button>
+                    <button className="btn editButton" type="submit">
+                      Save
+                    </button>
+                    <button
+                      className="btn cancelbutton"
+                      onClick={() => setId(0)}
+                    >
+                      Cancel
+                    </button>
                   </form>
                 )}
               </div>
               {item.id != id && (
                 <>
                   <button onClick={() => onEdit(item)}>Edit</button>
-                  <button onClick={() => onDelete(item)}>Delete</button>
+                  <button
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you wish to delete this item?"
+                        )
+                      )
+                        onDelete(item);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </>
               )}
             </li>
@@ -88,6 +106,13 @@ function App() {
       ) : (
         "No item found"
       )}
+
+      <a
+        className="github"
+        href="https://github.com/subrotoice/simple-react-crud"
+      >
+        GitHub
+      </a>
     </div>
   );
 }
